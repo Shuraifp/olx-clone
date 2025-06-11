@@ -1,20 +1,16 @@
 import olx from '../assets/olx.png';
 import { imgDB, txtDB } from '../firebase';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { v4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection} from "firebase/firestore";
 import { dbContext } from './DbProvider';
 
 
 const SellPage = ({toggleSell}) => {
 
   const {getProducts} = useContext(dbContext)
-  const {products} =useContext(dbContext)
 
-  const [submit, setSubmit] = useState(false);
-  const [image, setImage] = useState(null);
-  const [dbData, setDbData] = useState([]);
   const [details, setDetails] = useState({
     title: '',
     category: '',
@@ -170,11 +166,6 @@ const SellPage = ({toggleSell}) => {
           </div>
         </form>
       </div>
-      {products.map((product) => (
-        <ul>
-          <li>{product.title}</li>
-        </ul>
-      ))}
     </div>
   );
 };
